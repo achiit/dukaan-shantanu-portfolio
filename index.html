@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shantanu Kumar — video editor for YouTube creators, vloggers, Shorts and Reels.">
+  <title>Shantanu Kumar | Video Editor</title>
+  <style>
+    :root {
+      --bg: #0b1117;
+      --panel: #121c25;
+      --panel2: #17232d;
+      --text: #f4f7f9;
+      --muted: #a9b6c1;
+      --accent: #39d6bd;
+      --accent-dark: #102d2b;
+      --line: rgba(255,255,255,.12);
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+    header {
+      position: sticky; top: 0; z-index: 5; backdrop-filter: blur(16px);
+      background: rgba(11,17,23,.86); border-bottom: 1px solid var(--line);
+    }
+    nav { display: flex; justify-content: space-between; align-items: center; min-height: 72px; gap: 20px; }
+    .brand { text-decoration: none; font-weight: 800; letter-spacing: -.03em; }
+    .brand span { color: var(--accent); }
+    .navlinks { display: flex; gap: 24px; align-items: center; }
+    .navlinks a { color: var(--muted); text-decoration: none; font-size: .93rem; }
+    .navlinks a:hover { color: var(--text); }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--accent); color: #06211e; font-weight: 800; text-decoration: none;
+      border: 0; border-radius: 999px; padding: 12px 19px; transition: transform .2s, opacity .2s;
+    }
+    .button:hover { transform: translateY(-2px); opacity: .92; }
+    .button.secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
+    .hero { padding: 88px 0 76px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 54px; align-items: center; }
+    .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .16em; font-size: .76rem; font-weight: 800; }
+    h1 { font-size: clamp(2.7rem, 6vw, 5.5rem); line-height: .99; letter-spacing: -.065em; margin: 18px 0 22px; }
+    h1 em { color: var(--accent); font-style: normal; }
+    .lead { color: var(--muted); max-width: 650px; font-size: 1.12rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-card {
+      background: radial-gradient(circle at 80% 12%, rgba(57,214,189,.18), transparent 34%), var(--panel);
+      border: 1px solid var(--line); border-radius: 26px; padding: 26px; min-height: 340px;
+      display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 25px 80px rgba(0,0,0,.24);
+    }
+    .screen {
+      border: 1px solid rgba(255,255,255,.15); border-radius: 17px; padding: 18px;
+      background: linear-gradient(140deg, #243743, #101820 65%); min-height: 190px;
+      display: flex; align-items: end; position: relative; overflow: hidden;
+    }
+    .screen:before, .screen:after { content:""; position:absolute; border-radius:50%; filter: blur(1px); }
+    .screen:before { width:190px; height:190px; right:-22px; top:-60px; background:rgba(57,214,189,.20); }
+    .screen:after { width:150px; height:150px; left:-40px; bottom:-80px; background:rgba(84,127,255,.17); }
+    .play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 58px; height:58px; border-radius:50%; display:grid; place-items:center; background:var(--accent); color:#08211f; font-size:1.2rem; z-index:1; }
+    .screen-label { position:relative; z-index:1; font-weight:800; font-size:1.1rem; }
+    .timeline { display:grid; gap:7px; margin-top:17px; }
+    .track { display:flex; gap:5px; height:8px; }
+    .track i { display:block; border-radius:3px; background:var(--accent); opacity:.85; }
+    .track:nth-child(2) i { background:#7898ff; }
+    .track:nth-child(3) i { background:#f2b86b; }
+    section { padding: 76px 0; }
+    .section-head { display:flex; justify-content:space-between; gap:24px; align-items:end; margin-bottom:28px; }
+    h2 { margin:8px 0 0; font-size:clamp(2rem, 4vw, 3rem); line-height:1.1; letter-spacing:-.045em; }
+    .section-intro { color:var(--muted); max-width:480px; margin:0; }
+    .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:23px; }
+    .card h3 { margin:12px 0 8px; font-size:1.15rem; }
+    .card p { margin:0; color:var(--muted); font-size:.96rem; }
+    .iconbox { width:43px; height:43px; display:grid; place-items:center; border-radius:13px; background:var(--accent-dark); color:var(--accent); font-size:1.25rem; }
+    .work-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .work-card { border:1px solid var(--line); border-radius:21px; overflow:hidden; background:var(--panel); }
+    .work-thumb { min-height:205px; padding:20px; display:flex; align-items:end; position:relative; overflow:hidden; background:linear-gradient(135deg,#203f49,#14212a 60%,#2b2d48); }
+    .work-thumb.alt { background:linear-gradient(135deg,#563d2c,#1c2630 60%,#1c4d4a); }
+    .work-thumb.purple { background:linear-gradient(135deg,#47385f,#1c2530 60%,#1d5a58); }
+    .work-thumb.gold { background:linear-gradient(135deg,#71552c,#182630 60%,#31514b); }
+    .work-thumb:before { content:""; position:absolute; width:230px;height:230px; border:1px solid rgba(255,255,255,.15); border-radius:50%; right:-45px; top:-65px; box-shadow:0 0 0 28px rgba(255,255,255,.025),0 0 0 58px rgba(255,255,255,.025); }
+    .work-type { position:relative; z-index:1; display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.25); background:rgba(0,0,0,.2); font-size:.78rem; }
+    .work-info { padding:20px; }
+    .work-info h3 { margin:0 0 7px; }
+    .work-info p { color:var(--muted); margin:0 0 12px; }
+    .placeholder { color:var(--accent); font-size:.84rem; font-weight:700; }
+    .note { border:1px solid rgba(57,214,189,.25); background:rgba(57,214,189,.07); color:#d7f8f1; padding:14px 16px; border-radius:14px; margin-top:18px; font-size:.92rem; }
+    .process { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; counter-reset:steps; }
+    .step { padding:20px; background:var(--panel); border:1px solid var(--line); border-radius:18px; }
+    .step .num { color:var(--accent); font-weight:900; font-size:.82rem; letter-spacing:.1em; }
+    .step h3 { margin:9px 0 7px; }
+    .step p { margin:0; color:var(--muted); font-size:.93rem; }
+    .about-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:30px; align-items:stretch; }
+    .about-panel { padding:28px; border-radius:22px; border:1px solid var(--line); background:var(--panel); }
+    .about-panel p { color:var(--muted); }
+    .skill-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+    .skill-tags span { border:1px solid var(--line); border-radius:999px; padding:7px 11px; font-size:.83rem; color:#dce5ea; }
+    .contact { background:linear-gradient(135deg,rgba(57,214,189,.12),transparent 60%),var(--panel); border:1px solid var(--line); border-radius:28px; padding:clamp(25px,5vw,52px); display:flex; align-items:center; justify-content:space-between; gap:25px; }
+    .contact p { color:var(--muted); max-width:590px; }
+    footer { border-top:1px solid var(--line); padding:24px 0; color:var(--muted); font-size:.87rem; }
+    .footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    @media (max-width: 800px) {
+      .hero-grid,.about-grid { grid-template-columns:1fr; }
+      .hero { padding-top:58px; }
+      .hero-card { min-height:290px; }
+      .grid3 { grid-template-columns:1fr; }
+      .process { grid-template-columns:repeat(2,1fr); }
+      .section-head { display:block; }
+      .section-intro { margin-top:12px; }
+      .contact { display:block; }
+      .contact .button { margin-top:10px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width:min(var(--max),calc(100% - 28px)); }
+      .navlinks a:not(.button) { display:none; }
+      nav { min-height:64px; }
+      .work-grid { grid-template-columns:1fr; }
+      .process { grid-template-columns:1fr; }
+      section { padding:55px 0; }
+      .hero { padding-bottom:50px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#home">SHANTANU<span>.</span></a>
+      <div class="navlinks">
+        <a href="#services">Services</a>
+        <a href="#work">My Work</a>
+        <a href="#about">About</a>
+        <a class="button" href="#contact">Let's talk ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Video editor · CapCut</div>
+          <h1>Stories that<br>keep people <em>watching.</em></h1>
+          <p class="lead">I'm Shantanu Kumar. I help YouTube creators and vloggers turn raw footage into engaging long-form videos, Shorts, and Reels—with thoughtful pacing, clean sound, and a style that fits their channel.</p>
+          <div class="actions">
+            <a class="button" href="#work">Explore sample work ↓</a>
+            <a class="button secondary" href="mailto:meshantanu88@gmail.com">Email me ↗</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Decorative video editing timeline illustration">
+          <div>
+            <div class="eyebrow">From raw clips to ready-to-post</div>
+            <div class="screen">
+              <div class="play">▶</div>
+              <div class="screen-label">Your story. Sharper edit.</div>
+            </div>
+          </div>
+          <div class="timeline" aria-hidden="true">
+            <div class="track"><i style="width:24%"></i><i style="width:16%"></i><i style="width:31%"></i><i style="width:20%"></i></div>
+            <div class="track"><i style="width:18%"></i><i style="width:34%"></i><i style="width:22%"></i><i style="width:16%"></i></div>
+            <div class="track"><i style="width:36%"></i><i style="width:21%"></i><i style="width:28%"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">What I do</div><h2>Editing for every format.</h2></div>
+          <p class="section-intro">From a full story-driven YouTube upload to a punchy vertical clip, I shape each edit for its audience and platform.</p>
+        </div>
+        <div class="grid3">
+          <article class="card"><div class="iconbox">▶</div><h3>YouTube & Vlogs</h3><p>Story structure, clean cuts, B-roll, music, audio polish, and pacing that keeps the video moving.</p></article>
+          <article class="card"><div class="iconbox">▣</div><h3>Shorts & Reels</h3><p>Vertical edits, readable captions, strong openings, punch-ins, and platform-ready exports.</p></article>
+          <article class="card"><div class="iconbox">✦</div><h3>Cinematic Montages</h3><p>Rhythm-led cuts, sound effects, transitions, and consistent color treatment for visual storytelling.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">Selected work</div><h2>Sample projects.</h2></div>
+          <p class="section-intro">These slots are ready for your videos. Replace each placeholder with a real sample link once your edits are finished.</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card">
+            <div class="work-thumb"><span class="work-type">LONG-FORM · YOUTUBE</span></div>
+            <div class="work-info"><h3>Vlog / YouTube Edit</h3><p>A story-led edit with a clear hook, B-roll, natural pacing, and polished audio.</p><span class="placeholder">Sample coming soon — add your video link</span></div>
+          </article>
+          <article class="work-card">
+            <div class="work-thumb alt"><span class="work-type">SHORT-FORM · 9:16</span></div>
+            <div class="work-info"><h3>YouTube Short / Reel</h3><p>A fast, focused vertical edit with captions, clean cuts, and an attention-grabbing opening.</p><span class="placeholder">Sample coming soon — add your video link</span></div>
+          </article>
+          <article class="work-card">
+            <div class="work-thumb purple"><span class="work-type">CINEMATIC · MONTAGE</span></div>
+            <div class="work-info"><h3>Cinematic Mini-Story</h3><p>Music-led visuals, purposeful transitions, sound design, and consistent color.</p><span class="placeholder">Sample coming soon — add your video link</span></div>
+          </article>
+          <article class="work-card">
+            <div class="work-thumb gold"><span class="work-type">SHOWREEL · 30–60 SEC</span></div>
+            <div class="work-info"><h3>Editing Showreel</h3><p>A quick overview of your strongest moments across long-form and short-form edits.</p><span class="placeholder">Sample coming soon — add your video link</span></div>
+          </article>
+        </div>
+        <div class="note"><strong>Portfolio note:</strong> These are project placeholders, not finished client work. Add your own footage, permitted footage, or clearly labelled concept edits. Only share work you have permission to use.</div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">Workflow</div><h2>Simple from start to finish.</h2></div>
+          <p class="section-intro">Clear expectations and communication help every project run smoothly.</p>
+        </div>
+        <div class="process">
+          <article class="step"><div class="num">STEP 01</div><h3>Brief</h3><p>We agree on the audience, style, deliverables, references, and deadline.</p></article>
+          <article class="step"><div class="num">STEP 02</div><h3>Edit</h3><p>I organize the footage and build the story in CapCut.</p></article>
+          <article class="step"><div class="num">STEP 03</div><h3>Review</h3><p>You share clear feedback within the agreed revision rounds.</p></article>
+          <article class="step"><div class="num">STEP 04</div><h3>Deliver</h3><p>I export the approved video in the agreed format and resolution.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-panel">
+          <div class="eyebrow">Tools & focus</div>
+          <h2>Creator-first editing.</h2>
+          <p>I work in CapCut and focus on the details that help a video feel clear, watchable, and true to the creator's personality.</p>
+          <div class="skill-tags"><span>CapCut</span><span>Storytelling</span><span>Pacing</span><span>Captions</span><span>Sound design</span><span>Vlogs</span><span>Short-form</span></div>
+        </div>
+        <div class="about-panel">
+          <div class="eyebrow">A little about me</div>
+          <h2>Hey, I'm Shantanu.</h2>
+          <p>I'm a video editor who enjoys helping creators turn their ideas and raw footage into content their audience can enjoy. Whether you need a full YouTube vlog or several short clips from one video, I aim to make the process collaborative, clear, and dependable.</p>
+          <p>I'm currently building out this portfolio with sample projects. If you have an upcoming video and a clear editing brief, let's talk about what you need.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact">
+          <div>
+            <div class="eyebrow">Have a video in mind?</div>
+            <h2>Let's make something worth watching.</h2>
+            <p>Tell me about your channel, the footage you have, and the kind of edit you're looking for. I'll get back to you by email.</p>
+            <p><strong>Email:</strong> meshantanu88@gmail.com</p>
+          </div>
+          <a class="button" href="mailto:meshantanu88@gmail.com?subject=Video%20Editing%20Inquiry">Start a conversation ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> Shantanu Kumar · Video Editor</span>
+      <span>Made for creators, vloggers, and YouTube channels.</span>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
